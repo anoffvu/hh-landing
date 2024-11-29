@@ -1,101 +1,147 @@
-import Image from "next/image";
+'use client'
 
-export default function Home() {
+import { motion } from 'framer-motion'
+import { Button } from '@/components/ui/button'
+import { Input } from '@/components/ui/input'
+import { useState } from 'react'
+import { TallyForm } from './components/TallyForm'
+
+export default function Page() {
+  const [email, setEmail] = useState('')
+  const [submitted, setSubmitted] = useState(false)
+
+  const container = {
+    hidden: { opacity: 0 },
+    show: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.15,
+        delayChildren: 0.3,
+      },
+    },
+  }
+
+  const textAnimation = {
+    hidden: {
+      opacity: 0,
+      filter: 'blur(20px)',
+      y: 20,
+    },
+    show: {
+      opacity: 1,
+      filter: 'blur(0px)',
+      y: 0,
+      transition: {
+        duration: 0.8,
+        ease: 'easeOut',
+      },
+    },
+  }
+
+  const fadeIn = {
+    hidden: { opacity: 0 },
+    show: {
+      opacity: 1,
+      transition: {
+        duration: 1,
+        ease: 'easeOut',
+      },
+    },
+  }
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault()
+    setSubmitted(true)
+  }
+
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+    <div className='min-h-screen relative overflow-hidden bg-[#fafaf9]'>
+      {/* Multiple gradient orbs for more organic movement */}
+      <div className='absolute inset-0 overflow-hidden'>
+        <div className='absolute -top-1/2 -left-1/2 w-full h-full bg-gradient-to-r from-sky-100/40 via-blue-100/40 to-indigo-100/40 blur-3xl animate-drift-1' />
+        <div className='absolute -bottom-1/2 -right-1/2 w-full h-full bg-gradient-to-l from-blue-50/40 via-sky-100/40 to-indigo-50/40 blur-3xl animate-drift-2' />
+        <div className='absolute top-1/4 left-1/4 w-full h-full bg-gradient-to-tr from-sky-50/30 via-blue-50/30 to-indigo-100/30 blur-3xl animate-drift-3' />
+      </div>
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+      {/* Grain effect */}
+      <div className='absolute inset-0 bg-noise opacity-20' />
+
+      <div className='relative'>
+        <div className='container mx-auto px-4 py-20 md:py-32'>
+          <motion.div
+            initial='hidden'
+            animate='show'
+            variants={container}
+            className='max-w-4xl mx-auto space-y-20'
           >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+            <div className='space-y-8 text-center'>
+              <motion.p
+                variants={textAnimation}
+                className='text-sky-500 font-medium tracking-wide inline-block'
+              >
+                THE FUTURE OF SPIRITUAL GUIDANCE
+              </motion.p>
+              <motion.h1
+                variants={textAnimation}
+                className='text-4xl md:text-6xl lg:text-7xl font-light tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-sky-400 to-blue-400'
+              >
+                A Personalized
+              </motion.h1>
+              <motion.h2
+                variants={textAnimation}
+                className='text-4xl md:text-6xl lg:text-7xl font-light tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-sky-400'
+              >
+                Spiritual Mentor
+              </motion.h2>
+            </div>
+
+            <motion.div
+              variants={fadeIn}
+              className='prose prose-lg mx-auto text-center max-w-2xl'
+            >
+              <p className='text-gray-600'>
+                Experience personalized spiritual guidance like never before.
+                Holy House connects you with a dedicated mentor who understands
+                your journey and helps you grow in your faith.
+              </p>
+            </motion.div>
+
+            <motion.div variants={fadeIn} className='max-w-md mx-auto w-full'>
+              <TallyForm />
+            </motion.div>
+
+            <motion.div
+              variants={fadeIn}
+              className='grid md:grid-cols-3 gap-8 text-center'
+            >
+              {[
+                {
+                  title: 'Personal Growth',
+                  description:
+                    'Receive guidance tailored to your spiritual journey',
+                },
+                {
+                  title: 'Daily Wisdom',
+                  description:
+                    'Get inspired by scripture-based insights every day',
+                },
+                {
+                  title: 'Deep Connection',
+                  description:
+                    'Build a meaningful relationship with your spiritual mentor',
+                },
+              ].map((feature, index) => (
+                <div key={index}>
+                  <h3 className='font-medium text-xl mb-2 bg-clip-text text-transparent bg-gradient-to-r from-sky-400 to-blue-400'>
+                    {feature.title}
+                  </h3>
+                  <p className='text-gray-600'>{feature.description}</p>
+                </div>
+              ))}
+            </motion.div>
+          </motion.div>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+      </div>
     </div>
-  );
+  )
 }
