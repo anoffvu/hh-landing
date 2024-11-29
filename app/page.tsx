@@ -1,15 +1,9 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { Button } from '@/components/ui/button'
-import { Input } from '@/components/ui/input'
-import { useState } from 'react'
 import { TallyForm } from './components/TallyForm'
 
 export default function Page() {
-  const [email, setEmail] = useState('')
-  const [submitted, setSubmitted] = useState(false)
-
   const container = {
     hidden: { opacity: 0 },
     show: {
@@ -47,11 +41,6 @@ export default function Page() {
         ease: 'easeOut',
       },
     },
-  }
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
-    setSubmitted(true)
   }
 
   return (
