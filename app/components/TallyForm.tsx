@@ -25,7 +25,7 @@ export function TallyForm() {
   }, [])
 
   return (
-    <div className='w-full'>
+    <div className='w-full relative'>
       <Script
         src='https://tally.so/widgets/embed.js'
         strategy='lazyOnload'
@@ -42,7 +42,7 @@ export function TallyForm() {
         height={174}
         frameBorder={0}
         title='Holy House Email Capture'
-        className='bg-white/50 backdrop-blur-sm rounded-md'
+        className='bg-transparent backdrop-blur-[2px] rounded-lg shadow-[0_0_1px_rgba(0,0,0,0.1)] hover:shadow-[0_0_1px_rgba(0,0,0,0.2)] transition-shadow'
       ></iframe>
     </div>
   )
