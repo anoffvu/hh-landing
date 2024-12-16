@@ -130,6 +130,23 @@ export default function Page() {
             </motion.div>
           </motion.div>
         </div>
+
+        <footer className='relative text-center py-8 text-sm text-gray-500'>
+          <div className='space-x-4'>
+            <a
+              href='/terms-of-service'
+              className='hover:text-gray-700 underline underline-offset-2'
+            >
+              Terms of Service
+            </a>
+            <a
+              href='/privacy-policy'
+              className='hover:text-gray-700 underline underline-offset-2'
+            >
+              Privacy Policy
+            </a>
+          </div>
+        </footer>
       </div>
     </div>
   )
