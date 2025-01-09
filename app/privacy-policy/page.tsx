@@ -108,11 +108,11 @@ export default function PrivacyPolicy() {
           </h2>
           <h3 className="text-xl font-medium mt-6 mb-3">Payment Information</h3>
           <p>
-            All payments are processed securely through Apple's In-App Purchase
-            system. We do not handle or store your payment information directly.
-            Any credit/debit card information or billing information is managed
-            by Apple. Please see Apple's Privacy Policy for details on how they
-            handle your information
+            All payments are processed securely through Apple&apos;s In-App
+            Purchase system. We do not handle or store your payment information
+            directly. Any credit/debit card information or billing information
+            is managed by Apple. Please see Apple&apos;s Privacy Policy for
+            details on how they handle your information
           </p>
           <h3 className="text-xl font-medium mt-6 mb-3">Transaction History</h3>
           <p>
@@ -120,7 +120,7 @@ export default function PrivacyPolicy() {
             to your transactions made via our app, including the purchased
             items, date and time of your purchases. However, we do not collect
             or store your financial information related to these transactions as
-            these are processed through Apple's payment system
+            these are processed through Apple&apos;s payment system
           </p>
           <h2 className="text-2xl font-semibold mt-8 mb-4">
             Security of Your Data
